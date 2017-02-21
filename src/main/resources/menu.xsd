@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://epam.com/menu.xsd"
+           xmlns="http://epam.com/menu.xsd" elementFormDefault="qualified"
+        >
+
+    <xs:element name="menu" type="Menu" />
+
+        <xs:complexType name = "Menu">
+
+            <xs:sequence>
+                <xs:element name = "dish"  minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name = "name"  minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+
+                                        <xs:element name = "description"  minOccurs="1" maxOccurs="unbounded">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name = "portion">
+                                            <xs:simpleType>
+                                                <xs:list itemType="xs:positiveInteger"/>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name = "price">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:int"/>
+                                            </xs:simpleType>
+                                        </xs:element>
+
+                                    </xs:sequence>
+                                    <xs:attribute name="title" type="xs:string"/>
+                                </xs:complexType>
+                            </xs:element>
+
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:ID" />
+                        <xs:attribute name ="type">
+                            <xs:simpleType >
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Горячие закуски" />
+                                    <xs:enumeration value="Холодные закуски" />
+                                    <xs:enumeration value="Завтрак" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+
+        </xs:complexType>
+
+</xs:schema>

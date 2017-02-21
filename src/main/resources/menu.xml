@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu xmlns ="http://epam.com/menu.xsd">
+
+    <dish id="Cold" type="Холодные закуски">
+        <name title="Ассорти рыбное">
+            <description>Слабосолёная форель, сёмга</description>
+            <portion>100 20 15</portion>
+            <price>100</price>
+        </name>
+        <name title="Тарталетки с красной икрой">
+            <description>Тарталетки с красной икрой </description>
+            <portion>60</portion>
+            <price>50</price>
+        </name>
+        <name title="Закуска по-русски">
+            <description>Кусочки атлантической сельди с отварным картофелем, луком, лимоном и зеленью</description>
+            <portion>70 50 2 10</portion>
+            <price>200</price>
+        </name>
+
+
+    </dish>
+
+    <dish id="Hot" type="Горячие закуски">
+        <name title="Лобио с шампиньонами">
+            <description>Фасоль с шампиньонами и грецкими орехами</description>
+            <portion>150 5</portion>
+            <price>145</price>
+        </name>
+        <name title="Жульен">
+            <description>С курицей</description>
+            <portion>120 1</portion>
+            <price>145</price>
+        </name>
+        <name title="Ахматар мясной">
+            <description>Колбаса, ветчина, буженина, сыр, азпеченные на мангале в лаваше</description>
+            <portion>1 шт.</portion>
+            <price>150</price>
+        </name>
+
+    </dish>
+
+    <dish id="Breakfast" type="Завтрак">
+        <name title = "Глазунья">
+            <description>2 яйца(на выбор: ветчина, сыр, помидоры)</description>
+            <portion>150</portion>
+            <price>2</price>
+
+        </name>
+        <name title="Омлет">
+            <description>Просто омлет</description>
+            <portion>100</portion>
+            <price>3</price>
+        </name>
+        <name title="Блинчики с мясом">
+            <description>Жареные блинчики с мясом</description>
+            <portion>150</portion>
+            <price>60</price>
+        </name>
+
+    </dish>
+
+
+
+    </menu>
