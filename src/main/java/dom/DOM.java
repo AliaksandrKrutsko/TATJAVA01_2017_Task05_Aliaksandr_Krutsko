@@ -11,8 +11,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DOM {
 
@@ -20,7 +18,7 @@ public class DOM {
 
 
 
-    public void parser(String tagname) throws IOException, SAXException, ParserConfigurationException {
+    public void parser() throws IOException, SAXException, ParserConfigurationException {
 
 
         DOMParser parser = new DOMParser();
@@ -31,33 +29,48 @@ public class DOM {
 
         Element root = document.getDocumentElement();
 
-        List<Food> menu = new ArrayList<Food>();
-        NodeList foodNodes = root.getElementsByTagName(tagname);
+
+        NodeList foodNodes = root.getElementsByTagName("dish");
+        Food food = null;
 
         for (int i = 0; i < foodNodes.getLength(); i++) {
 
-            menu.add(getFood(foodNodes.item(i)));
-        }
-        for (Food f : menu) {
-            System.out.println(f.getTitle() + ", " + f.getId() + ", " + f.getType() + ", " + f.getDescription() + ", "
-                    + f.getPortion() + ", " + f.getPrice());
+            food = new Food();
+
+            if (foodNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                Element foodElement = (Element) foodNodes.item(i);
+
+                food.setId(foodElement.getAttribute("id"));
+                food.setType(foodElement.getAttribute("type"));
+
+                System.out.println();
+                System.out.println("ID: " + food.getId() + " Type: " + food.getType());
+                System.out.println();
+
+                NodeList name = root.getElementsByTagName("name");
+                for (int j = 0; j <name.getLength(); j++) {
+
+                    if (name.item(j).getNodeType() == Node.ELEMENT_NODE) {
+
+                        Element nameElement = (Element) name.item(j);
+
+                        food.setTitle(nameElement.getAttribute("title"));
+
+                        food.setPortion(getSingleChild(nameElement, "portion").getTextContent().trim());
+                        food.setPrice(Integer.parseInt(getSingleChild(nameElement, "price").getTextContent().trim()));
+                        food.setDescription(getSingleChild(nameElement, "description").getTextContent().trim());
+
+                        System.out.println("Title: " + food.getTitle() + " Description: "  + food.getDescription() + " Portion: "
+                        + food.getPortion() + " Price: " + food.getPrice());
+                    }
+
+                }
+            }
+
+
         }
     }
 
-    private Food getFood(Node node) {
-
-        Food food = new Food();
-        if (node.getNodeType() == Node.ELEMENT_NODE) {
-            Element foodElement = (Element) node;
-            food.setId(foodElement.getAttribute("id"));
-            food.setTitle(foodElement.getAttribute("title"));
-            food.setType(foodElement.getAttribute("type"));
-            food.setPortion(getSingleChild(foodElement, "portion").getTextContent().trim());
-            food.setPrice(Integer.parseInt(getSingleChild(foodElement, "price").getTextContent().trim()));
-            food.setDescription(getSingleChild(foodElement, "description").getTextContent().trim());
-        }
-        return food;
-    }
 
 
     private static Element getSingleChild(Element element, String childName) {
